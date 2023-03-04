@@ -1,0 +1,22 @@
+ .page{
+  background-color: beige;
+  color: black;
+  width: 100%;
+   
+}
+img{
+ width: 100px;
+}
+.temp{
+ 
+  font-size: large;
+  font-style: oblique;
+  font-weight: bold;
+}
+.gettext{
+  border: 2px solid black;
+  margin: 10px;
+  display: block;
+  background-color: azure;
+   
+}
