@@ -20,7 +20,7 @@ const dispatch = useDispatch();
   const { city } = useParams();
   const formattedCity = city.replace(/\s+/g, '+');
   const [data, setData] = useState('');
-
+  const [error, setError] = useState(false);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +30,9 @@ const dispatch = useDispatch();
         const response = await axios.get(url);
         console.log(response);
         setData(response.data);
-        
+        if(data.error){
+          setError(true);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -40,7 +42,10 @@ const dispatch = useDispatch();
    const unit = useSelector(state => state.unit);
    const temperature = data ? (unit === 'c' ? data.current.temp_c : data.current.temp_f) : null;
 
-
+   if (error || Object.keys(data).length === 0) {
+    alert("Location Not Found.. !");
+    return (window.location.href = "/");
+  }
 
    const change={
     width: "100%",
@@ -89,6 +94,7 @@ const dispatch = useDispatch();
         <p>Loading...</p>
       )}
     </div>
+      
   )
 }
 
